@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        h1 {
+            padding: 20px;
+            text-align: center;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif !important;
+        }
+        html {  
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+}
+    </style>
+    </style>
+</head>
+
+<body>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <h1>Ծրագրավորում III Երևան</h1>
+            </tr>
+            <tr>
+                <h1>Անուն Ազգանուն</h1>
+            </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Գույն</th>
+                <th scope="col">Նկարագրություն</th>
+                <th scope="col">Ծնվել է</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td scope="row" style="background-color:green;" id="grassCol"></td>
+                <td>Կանաչը խոտն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, նրան ոչնչացնում է կերծանողը, այրում է հրաբուխը, 
+                    նրա վրա բազմանում է սունկը, կամ այրում է կրակը: Խոտը աշնանը ավելի դանդաղ է բազմանում, իսկ ձմռանը չի բազմանում</td>
+                <td id="grassCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td scope="row" style="background-color:yellow;" id="grassEaterCol"></td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը, նրան ոչնչացնում է կերծանողը, այրում է հրաբուխը, 
+                    նրա վրա բազմանում է սունկը, կամ այրում է կրակը: Խոտակերը ամռանը ավելի արագ է բազմանում:</td>
+                <td id="grassEaterCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td scope="row" style="background-color:rgb(255, 0, 179);" id="predaterCol"></td>
+                <td>Վարդագույնը գիշատիչն է, որը բազմանում է N հատ խոտակեր ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
+                    երբ նրան ոչնչացնում է կերծանողը, այրում է հրաբուխը, 
+                    նրա վրա բազմանում է սունկը, կամ այրում է կրակը:</td>
+                <td id="predaterCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:blue;" id="destructerCol"></td>
+                <td>Կապույտը կերծանողն է, որը բազմանում է N հատ ցանկացած հերոս ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
+                    երբ նրան այրում է հրաբուխը, նրա վրա բազմանում է սունկը, կամ այրում է կրակը:
+                    Կործանողը գործում է միայն ձմռանը և գարնանը:</td>
+                <td id="destructerCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:rgb(255, 123, 0);" id="volcanoCol"></td>
+                <td>Նարնջագույնը հրաբուխն է, որը ժայթքում է ամեն N ցիկլը մեկ, երբ նրան ոչնչացնում է կերծանողը, նրա վրա բազմանում է սունկը, կամ այրում է կրակը:</td>
+                <td id="volcanoCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td scope="row" style="background-color:rgb(0, 67, 43);" id="mushCol"></td>
+                <td>Մուգ կանաչը սունկն է, որը բազմանում է N ցիկլը մեկ,մահանում է երբ նրան ուտում է սունկ ուտողը, 
+                    կամ այրում է կրակը: Սունկը ավելի արագ է բազմնում աշնանը:</td>
+                <td id="mushCount"></td>
+                
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td scope="row" style="background-color:rgb(137, 6, 177);" id="mushEaterCol"></td>
+                <td>Մանուշակագույնը սունկ ուտողն է, որը բազմանում է N հատ սունկ ուտելուց հետո և մահանում է երբ
+                    նրան այրում է հրաբուխը, կամ այրում է կրակը:
+                    Սունկ ուտողը գործում է միայն աշնանը և գարնանը:</td>
+                <td id="mushEaterCount"></td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+    <button onclick="kill()">Kill them all</button>
+    <button onclick="fire()">Send Fire</button>
+    <script src="p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- <script src="server.js"></script> -->
+    <script src="script.js"></script>
+</body>
+
+</html>
